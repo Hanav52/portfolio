@@ -1,38 +1,720 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio Hero</title>
 
+  <!-- (선택) 폰트: Bebas Neue 비슷한 느낌 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/index.css">
+  <style>
+    :root{
+      --lime:#C7FF2E;
+      --purple:#8B5CF6;
+      --purpleDeep:#5B21B6;
+      --ink:#0B0B0B;
+      --pad: clamp(16px, 2.6vw, 50px);
+      --stroke: 2px;
+      --shadow: 0 12px 0 rgba(0,0,0,.15);
+    }
 
-    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:#0a0a0a;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+      color:var(--ink);
+      display:grid;
+      place-items:center;
+      min-height:100vh;
+      padding: 12px;
+    }
+
+    /* 1920x950 비율 유지하면서 반응형 */
+    .stage{
+      width: min(100vw - 24px, 1920px);
+      aspect-ratio: 1920 / 950;
+      position:relative;
+      overflow:hidden;
+      border-radius: 10px;
+      background: var(--lime);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    /* 상하좌우 50px(반응형) 안쪽 여백 */
+    .inner{
+      position:absolute;
+      inset: var(--pad);
+    }
+
+    /* 하단 보라 띠 */
+    .stage::after{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      bottom:0;
+      height: 36%;
+      background: var(--purple);
+    }
+
+    /* --- TOP RIGHT NAV --- */
+    .topbar{
+      position:absolute;
+      top:0;
+      right:0;
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      z-index: 30;
+    }
+
+    .pill{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+      padding: 10px 18px;
+      border: var(--stroke) solid rgba(0,0,0,.9);
+      background: rgba(255,255,255,.15);
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing:.06em;
+      text-transform: uppercase;
+      font-size: clamp(10px, .9vw, 14px);
+      backdrop-filter: blur(6px);
+    }
+    .pill a{
+      color: var(--ink);
+      text-decoration:none;
+      position:relative;
+    }
+    .pill a::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-3px;
+      height:2px;
+      background: transparent;
+    }
+    .pill a:hover::after{ background: rgba(0,0,0,.9); }
+
+    .hamburger{
+      width: 44px;
+      height: 36px;
+      border: var(--stroke) solid rgba(0,0,0,.9);
+      border-radius: 999px;
+      background: rgba(255,255,255,.15);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      backdrop-filter: blur(6px);
+    }
+    .hamburger span{
+      display:block;
+      width: 18px;
+      height: 2px;
+      background: rgba(0,0,0,.9);
+      position: relative;
+    }
+    .hamburger span::before,
+    .hamburger span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width: 18px;
+      height: 2px;
+      background: rgba(0,0,0,.9);
+    }
+    .hamburger span::before{ top:-6px; }
+    .hamburger span::after{ top: 6px; }
+
+    /* --- LEFT TITLE --- */
+    .leftTitle{
+      position:absolute;
+      top:0;
+      left:0;
+      z-index: 25;
+      line-height: .86;
+      font-family: "Bebas Neue", Inter, sans-serif;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      font-size: clamp(46px, 6.2vw, 92px);
+    }
+    .leftTitle .sub{
+      display:block;
+      font-size: .62em;
+      opacity: .95;
+    }
+
+    /* --- DECOR: CLOUDS --- */
+    .cloud{
+      position:absolute;
+      width: clamp(140px, 18vw, 360px);
+      height: clamp(70px, 9vw, 180px);
+      background: rgba(139,92,246,.55);
+      border-radius: 999px;
+      filter: drop-shadow(0 10px 0 rgba(0,0,0,.12));
+      z-index: 10;
+    }
+    .cloud::before, .cloud::after{
+      content:"";
+      position:absolute;
+      background: rgba(139,92,246,.55);
+      border-radius: 999px;
+    }
+    .cloud::before{
+      width: 55%;
+      height: 75%;
+      left: 12%;
+      top: -28%;
+    }
+    .cloud::after{
+      width: 42%;
+      height: 62%;
+      right: 10%;
+      top: -18%;
+    }
+    .cloud.c1{ left: 14%; top: 10%; }
+    .cloud.c2{ left: 43%; top: 6%; transform: scale(.78); opacity:.9; }
+
+    /* --- CENTER LAMP --- */
+    .lamp{
+      position:absolute;
+      left: 36%;
+      top: -2%;
+      width: 22%;
+      height: 58%;
+      z-index: 18;
+      pointer-events:none;
+    }
+    .lamp .wire{
+      position:absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 52%;
+      background: rgba(0,0,0,.85);
+      transform: translateX(-50%);
+      opacity:.8;
+    }
+    .lamp .pull{
+      position:absolute;
+      left: 50%;
+      top: 46%;
+      width: 10px;
+      height: 10px;
+      border: 2px solid rgba(0,0,0,.85);
+      border-radius: 999px;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,.12);
+    }
+    .lamp .head{
+      position:absolute;
+      left: 50%;
+      top: 6%;
+      width: 78%;
+      height: 42%;
+      transform: translateX(-50%);
+      background: radial-gradient(120% 120% at 50% 15%, rgba(255,255,255,.25), rgba(255,255,255,0) 55%),
+                  linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.10));
+      border: 2px solid rgba(0,0,0,.85);
+      border-radius: 999px 999px 40% 40%;
+    }
+    .lamp .head::after{
+      content:"";
+      position:absolute;
+      left: 50%;
+      bottom: -10%;
+      width: 56%;
+      height: 18%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,.1);
+      border: 2px solid rgba(0,0,0,.85);
+      border-radius: 999px;
+    }
+    .lamp .cone{
+      position:absolute;
+      left: 50%;
+      top: 40%;
+      width: 130%;
+      height: 80%;
+      transform: translateX(-50%);
+      background: radial-gradient(55% 80% at 50% 0%, rgba(255,255,255,.55), rgba(255,255,255,.08) 60%, rgba(255,255,255,0) 100%);
+      clip-path: polygon(22% 0%, 78% 0%, 100% 100%, 0% 100%);
+      opacity:.9;
+    }
+
+    /* --- RIGHT FRAME --- */
+    .frameWrap{
+      position:absolute;
+      right: 6%;
+      top: 18%;
+      width: 13%;
+      height: 28%;
+      z-index: 12;
+    }
+    .frame{
+      width:100%;
+      height:100%;
+      border: var(--stroke) solid rgba(0,0,0,.9);
+      background: rgba(255,255,255,.10);
+      box-shadow: 0 14px 0 rgba(0,0,0,.12);
+      position:relative;
+    }
+    .frame::after{
+      content:"";
+      position:absolute;
+      left: 10%;
+      bottom: -14%;
+      width: 80%;
+      height: 18%;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,.9) 0 2px,
+        transparent 2px 8px
+      );
+      opacity:.8;
+    }
+
+    /* --- SHAPES --- */
+    .tri{
+      position:absolute;
+      right: 18%;
+      top: 19%;
+      width: 13%;
+      height: 22%;
+      background: rgba(139,92,246,.55);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      filter: drop-shadow(0 10px 0 rgba(0,0,0,.12));
+      z-index: 11;
+    }
+    .orbit{
+      position:absolute;
+      right: 14%;
+      top: 14%;
+      width: 18%;
+      height: 18%;
+      border: 2px solid rgba(255,255,255,.65);
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-radius: 50%;
+      transform: rotate(-18deg);
+      z-index: 12;
+      opacity:.95;
+    }
+
+    /* --- BIG PORTFOLIO TEXT --- */
+    .portfolio{
+      position:absolute;
+      right: 0;
+      bottom: 12%;
+      z-index: 21;
+      font-family: "Bebas Neue", Inter, sans-serif;
+      font-size: clamp(88px, 9.6vw, 190px);
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.92);
+      line-height: .9;
+      text-shadow: 0 10px 0 rgba(0,0,0,.10);
+      user-select:none;
+    }
+
+    .year{
+      position:absolute;
+      right: 0;
+      top: 44%;
+      z-index: 22;
+      font-weight: 900;
+      letter-spacing: .04em;
+      font-size: clamp(14px, 1.2vw, 22px);
+      color: rgba(0,0,0,.9);
+    }
+
+    /* --- LEFT BOTTOM BGM BUTTON --- */
+    .bgm{
+      position:absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 35;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: var(--stroke) solid rgba(0,0,0,.9);
+      background: rgba(255,255,255,.12);
+      border-radius: 10px;
+      cursor:pointer;
+      font-weight: 800;
+      letter-spacing:.06em;
+      text-transform: uppercase;
+      font-size: clamp(11px, 1vw, 16px);
+      backdrop-filter: blur(6px);
+    }
+    .bgm .play{
+      width: 26px;
+      height: 18px;
+      border: var(--stroke) solid rgba(0,0,0,.9);
+      border-radius: 6px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,.18);
+    }
+    .bgm .play i{
+      display:block;
+      width:0; height:0;
+      border-left: 9px solid rgba(0,0,0,.9);
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      margin-left:2px;
+    }
+    .bgm.isPlaying .play i{
+      width: 10px;
+      height: 10px;
+      border:0;
+      background: rgba(0,0,0,.9);
+      clip-path: polygon(0 0, 40% 0, 40% 100%, 0 100%, 60% 100%, 60% 0, 100% 0, 100% 100%, 60% 100%);
+      margin-left:0;
+    }
+
+    /* --- FLOWERS LEFT --- */
+    .flowers{
+      position:absolute;
+      left: 10%;
+      bottom: 18%;
+      width: 18%;
+      height: 22%;
+      z-index: 14;
+      opacity:.95;
+      pointer-events:none;
+    }
+
+    /* --- MOLE --- */
+    .mole{
+      position:absolute;
+      left: 49%;
+      bottom: 22%;
+      width: 13%;
+      transform: translateX(-50%);
+      z-index: 26;
+      filter: drop-shadow(0 16px 0 rgba(0,0,0,.14));
+      pointer-events:none;
+    }
+
+    /* --- MENU OVERLAY (hamburger) --- */
+    .overlay{
+      position:absolute;
+      inset: 0;
+      z-index: 60;
+      display:none;
+      background: rgba(0,0,0,.45);
+      backdrop-filter: blur(10px);
+    }
+    .overlay.open{ display:block; }
+    .overlay .panel{
+      position:absolute;
+      right: var(--pad);
+      top: var(--pad);
+      width: min(360px, 70vw);
+      border-radius: 18px;
+      border: 2px solid rgba(0,0,0,.9);
+      background: rgba(199,255,46,.92);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      padding: 18px;
+    }
+    .overlay .panel h3{
+      margin: 0 0 12px;
+      font-family: "Bebas Neue", Inter, sans-serif;
+      letter-spacing:.06em;
+      font-size: 28px;
+    }
+    .overlay .panel a{
+      display:block;
+      padding: 12px 12px;
+      border-radius: 12px;
+      text-decoration:none;
+      color: var(--ink);
+      font-weight: 800;
+      border: 2px solid rgba(0,0,0,.9);
+      background: rgba(255,255,255,.12);
+      margin-bottom: 10px;
+    }
+    .overlay .panel a:hover{ background: rgba(255,255,255,.22); }
+
+    /* --- responsive tweaks --- */
+    @media (max-width: 900px){
+      .portfolio{ bottom: 10%; }
+      .frameWrap{ display:none; }
+      .tri{ right: 10%; top: 18%; width: 18%; }
+      .orbit{ right: 6%; top: 14%; width: 26%; height: 26%; }
+      .mole{ width: 18%; bottom: 20%; }
+      .flowers{ left: 2%; width: 26%; }
+    }
+
+    @media (max-width: 560px){
+      .pill{ gap: 12px; padding: 8px 12px; }
+      .leftTitle{ font-size: clamp(38px, 9vw, 70px); }
+      .portfolio{ font-size: clamp(72px, 14vw, 130px); }
+      .cloud.c2{ display:none; }
+      .lamp{ left: 30%; width: 30%; }
+    }
+  </style>
 </head>
 
 <body>
-<div class="intro">
-  <!-- 화면 -->
-  <div class="scene active" id="scene1">
-    <img src="../images/1.png" alt="scene1">
-  </div>
-  <div class="scene" id="scene2">
-    <img src="../images/2.png" alt="scene2">
-  </div>
+  <main class="stage" aria-label="portfolio hero">
+    <div class="inner">
 
-  <!-- 식빵 -->
-  <div class="bread">
-    <img src="../images/3.png" alt="bread">
-    <div class="string"></div>
-  </div>
-</div>
+      <!-- top right -->
+      <div class="topbar">
+        <nav class="pill" aria-label="primary">
+          <a href="#about">ABOUT ME</a>
+          <a href="#project">PROJECT</a>
+          <a href="#contact">CONTACT</a>
+        </nav>
+        <button class="hamburger" type="button" aria-label="menu" id="btnMenu">
+          <span></span>
+        </button>
+      </div>
 
+      <!-- left title -->
+      <div class="leftTitle">
+        WEB<br/>
+        <span class="sub">DESIGNER</span>
+        <span class="sub">PUBLISHER</span>
+      </div>
 
+      <!-- clouds -->
+      <div class="cloud c1" aria-hidden="true"></div>
+      <div class="cloud c2" aria-hidden="true"></div>
 
-    <script src="../js/index.js"></script>
+      <!-- center lamp -->
+      <div class="lamp" aria-hidden="true">
+        <div class="wire"></div>
+        <div class="head"></div>
+        <div class="cone"></div>
+        <div class="pull"></div>
+      </div>
+
+      <!-- shapes right -->
+      <div class="tri" aria-hidden="true"></div>
+      <div class="orbit" aria-hidden="true"></div>
+
+      <!-- frame right -->
+      <div class="frameWrap" aria-hidden="true">
+        <div class="frame"></div>
+      </div>
+
+      <!-- year -->
+      <div class="year">2026.</div>
+
+      <!-- flowers (simple SVG doodle 느낌) -->
+      <svg class="flowers" viewBox="0 0 520 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g stroke="rgba(0,0,0,.9)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <!-- stems -->
+          <path d="M120 310 C120 240, 140 200, 170 160" />
+          <path d="M250 310 C250 235, 230 205, 205 170" />
+          <path d="M380 310 C380 245, 365 215, 340 178" />
+          <!-- leaves -->
+          <path d="M135 250 C170 245, 170 280, 138 284" />
+          <path d="M235 245 C205 240, 205 275, 232 280" />
+          <path d="M395 252 C430 250, 430 285, 398 288" />
+        </g>
+
+        <!-- flowers -->
+        <g transform="translate(150 150)">
+          <g stroke="rgba(0,0,0,.9)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="0" cy="0" r="46" fill="rgba(255,255,255,.14)" />
+            <path d="M0 -86 C20 -70, 20 -45, 0 -35 C-20 -45, -20 -70, 0 -86Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M86 0 C70 20, 45 20, 35 0 C45 -20, 70 -20, 86 0Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M0 86 C-20 70, -20 45, 0 35 C20 45, 20 70, 0 86Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M-86 0 C-70 -20, -45 -20, -35 0 C-45 20, -70 20, -86 0Z" fill="rgba(255,255,255,.14)"/>
+          </g>
+          <circle cx="0" cy="0" r="18" fill="rgba(0,0,0,.88)"/>
+        </g>
+
+        <g transform="translate(260 160)">
+          <g stroke="rgba(0,0,0,.9)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="0" cy="0" r="46" fill="rgba(255,255,255,.14)" />
+            <path d="M0 -86 C20 -70, 20 -45, 0 -35 C-20 -45, -20 -70, 0 -86Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M86 0 C70 20, 45 20, 35 0 C45 -20, 70 -20, 86 0Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M0 86 C-20 70, -20 45, 0 35 C20 45, 20 70, 0 86Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M-86 0 C-70 -20, -45 -20, -35 0 C-45 20, -70 20, -86 0Z" fill="rgba(255,255,255,.14)"/>
+          </g>
+          <circle cx="0" cy="0" r="18" fill="rgba(0,0,0,.88)"/>
+        </g>
+
+        <g transform="translate(370 170)">
+          <g stroke="rgba(0,0,0,.9)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="0" cy="0" r="46" fill="rgba(255,255,255,.14)" />
+            <path d="M0 -86 C20 -70, 20 -45, 0 -35 C-20 -45, -20 -70, 0 -86Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M86 0 C70 20, 45 20, 35 0 C45 -20, 70 -20, 86 0Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M0 86 C-20 70, -20 45, 0 35 C20 45, 20 70, 0 86Z" fill="rgba(255,255,255,.14)"/>
+            <path d="M-86 0 C-70 -20, -45 -20, -35 0 C-45 20, -70 20, -86 0Z" fill="rgba(255,255,255,.14)"/>
+          </g>
+          <circle cx="0" cy="0" r="18" fill="rgba(0,0,0,.88)"/>
+        </g>
+      </svg>
+
+      <!-- mole (simple) -->
+      <svg class="mole" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <filter id="s" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="10" stdDeviation="0" flood-color="rgba(0,0,0,.12)"/>
+          </filter>
+        </defs>
+
+        <!-- body -->
+        <g filter="url(#s)">
+          <path d="M70 230 C70 140, 115 70, 185 70 C255 70, 300 140, 300 230
+                   C300 245, 286 252, 270 252 H100 C84 252, 70 245, 70 230Z"
+                fill="rgba(0,0,0,.92)"/>
+          <!-- belly -->
+          <path d="M120 235 C120 170, 145 120, 185 120 C225 120, 250 170, 250 235Z"
+                fill="rgba(255,255,255,.92)"/>
+          <!-- head bump -->
+          <path d="M105 128 C115 88, 140 60, 185 60 C230 60, 255 88, 265 128
+                   C242 112, 218 104, 185 104 C152 104, 128 112, 105 128Z"
+                fill="rgba(0,0,0,.92)"/>
+
+          <!-- nose -->
+          <circle cx="95" cy="140" r="12" fill="rgba(0,0,0,.92)"/>
+          <circle cx="90" cy="138" r="3" fill="rgba(255,255,255,.8)"/>
+
+          <!-- eye -->
+          <circle cx="150" cy="110" r="9" fill="white"/>
+          <circle cx="150" cy="110" r="4.5" fill="rgba(0,0,0,.92)"/>
+
+          <!-- whiskers -->
+          <g stroke="rgba(0,0,0,.92)" stroke-width="6" stroke-linecap="round">
+            <path d="M78 128 L52 118"/>
+            <path d="M78 148 L48 148"/>
+            <path d="M78 168 L52 178"/>
+          </g>
+
+          <!-- arms -->
+          <g fill="rgba(0,0,0,.92)">
+            <path d="M235 165 C260 155, 280 165, 294 188 C276 204, 258 210, 230 210 C222 198, 222 178, 235 165Z"/>
+            <path d="M160 175 C140 165, 118 170, 102 188 C122 205, 142 212, 170 215 C177 205, 175 187, 160 175Z"/>
+          </g>
+        </g>
+      </svg>
+
+      <!-- big text -->
+      <div class="portfolio">PORTFOLIO</div>
+
+      <!-- BGM -->
+      <button class="bgm" type="button" id="btnBgm" aria-pressed="false">
+        <span class="play" aria-hidden="true"><i></i></span>
+        <span id="bgmLabel">BGM : A TO Z LEEJUNKI</span>
+      </button>
+
+      <!-- overlay menu -->
+      <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="menu">
+        <div class="panel">
+          <h3>MENU</h3>
+          <a href="#about">ABOUT ME</a>
+          <a href="#project">PROJECT</a>
+          <a href="#contact">CONTACT</a>
+          <a href="#top" id="btnClose">CLOSE</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // --- hamburger menu ---
+    const btnMenu = document.getElementById('btnMenu');
+    const overlay = document.getElementById('overlay');
+    const btnClose = document.getElementById('btnClose');
+
+    function openMenu(){
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(e){
+      if (e) e.preventDefault();
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btnMenu.addEventListener('click', openMenu);
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeMenu(); });
+    btnClose.addEventListener('click', closeMenu);
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+
+    // --- BGM (WebAudio: 간단한 루프) ---
+    const btnBgm = document.getElementById('btnBgm');
+
+    let audioCtx = null;
+    let isPlaying = false;
+    let master = null;
+    let timer = null;
+
+    const melodyHz = [
+      392, 440, 494, 523, 494, 440, 392, 349,
+      392, 440, 494, 523, 587, 523, 494, 440
+    ];
+
+    function ensureAudio(){
+      if (audioCtx) return;
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      master = audioCtx.createGain();
+      master.gain.value = 0.08;
+      master.connect(audioCtx.destination);
+    }
+
+    function playNote(freq, t, dur){
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = 'square';
+      o.frequency.setValueAtTime(freq, t);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.35, t + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g);
+      g.connect(master);
+      o.start(t);
+      o.stop(t + dur + 0.02);
+    }
+
+    function startBgm(){
+      ensureAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const bpm = 140;
+      const step = 60 / bpm / 2; // 8th
+      let idx = 0;
+
+      const scheduleAhead = 0.15;
+      const tick = () => {
+        const now = audioCtx.currentTime;
+        for (let i=0; i<8; i++){
+          const t = now + i * step;
+          const f = melodyHz[(idx + i) % melodyHz.length];
+          playNote(f, t, step * 0.9);
+        }
+        idx = (idx + 8) % melodyHz.length;
+      };
+
+      tick();
+      timer = setInterval(tick, Math.max(60, step * 1000 * 8 - scheduleAhead * 1000));
+    }
+
+    function stopBgm(){
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    btnBgm.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      btnBgm.classList.toggle('isPlaying', isPlaying);
+      btnBgm.setAttribute('aria-pressed', String(isPlaying));
+
+      if (isPlaying) startBgm();
+      else stopBgm();
+    });
+  </script>
 </body>
-
 </html>
