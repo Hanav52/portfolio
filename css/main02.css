@@ -1,0 +1,161 @@
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  colorInfluence: #000;
+  font-family: "Bebas Neue";
+  font-weight: 400;
+}
+
+/* 캔버스 */
+.canvas {
+  max-width: 1920px;
+  height: 950px;
+  margin: 0 auto;
+  padding: 80px 150px;
+}
+
+/* 레이아웃 */
+.about-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  height: 100%;
+}
+
+/* LEFT */
+.left {
+    padding-top: 80px;
+
+}
+.left h1 {
+  font-size: 113.56px;
+  line-height: 1.2;
+  margin-bottom: 56px;
+  font-family: "Bebas Neue";
+  font-weight:400;
+}
+
+.circle-wrap {
+  position: relative;
+  width: 380px;
+  height: 380px;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #e0e0e0;
+  border: 3px solid;
+}
+
+/* 클릭 버튼 */
+.click-btn {
+  position: absolute;
+  top: -50px;
+  right: -100px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.click-btn span {
+  position: absolute;
+  top: -22px;
+  right: -10px;
+  font-size: 10px;
+  transform: rotate(90deg);
+}
+
+/* RIGHT */
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.preview-box {
+  width: 100%;
+  height: 615px;
+  background: #000;
+  border-radius: 30px;
+}
+
+.contact {
+  margin-top: 30px;
+}
+
+.question {
+  font-size: 25px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.email {
+  font-size: 45px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  letter-spacing: 3px;
+}
+
+.mail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.mail button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.desc {
+  font-size: 25px;
+  color: #555;
+  letter-spacing: 3px;
+}
+
+.boxbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .canvas {
+    height: auto;
+    padding: 40px;
+  }
+
+  .about-wrap {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .left h1 {
+    font-size: 48px;
+  }
+}
