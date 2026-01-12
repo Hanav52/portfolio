@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    height: 950px;
+  font-family: "asta sans";
+  color: #000;
+}
+
+.header {
+  padding: 40px 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.nav {
+  border: 2px solid #000;
+  border-radius: 50px;
+  padding: 14px 30px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+}
+
+.container {
+  padding: 0 150px 50px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 60px;
+}
+
+.intro-title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 71px;
+}
+
+.intro-title span {
+  color: #7e3aed;
+}
+
+.section-title {
+  font-size: 23.56px;
+  font-weight: 700;
+  margin-bottom: 34px;
+}
+
+.skills-title {
+    font-family: "bebus nune";
+  font-size: 36.59px;
+  font-weight: 700;
+  margin-bottom: 34px;
+}
+
+.skills-title.purple {
+  color: #7e3aed;
+  margin-top: 34px;
+}
+
+.desc-title {
+  font-size: 18px;
+  /* line-height: 1.8; */
+  color: #000000;
+}
+
+.skills {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.skill {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 6px;
+  font-size: 13px;
+  align-items: center;
+}
+
+.bar {
+    width: 120px;
+  height: 16px;
+  background: #ddd;
+}
+
+.center img {
+  width: 412px;
+  height: 464px;
+  object-fit: cover;
+}
+
+.profile {
+  list-style: none;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.li-flex {
+    display: flex;
+    align-items: center;
+}
+
+.boldbold {
+    font-size: 25.6px;
+    font-weight: bold;
+}
+.notbold {
+  color: #7e3aed;
+    font-size: 20.14px;
+    font-weight: bold;
+}
+
+.profile li {
+  margin-bottom: 18px;
+}
+
+.profile span {
+  /* color: #7e3aed; */
+  margin-right: 29px;
+}
+
+.right h3 {
+    font-family: "bebus nune";
+
+  color: #7e3aed;
+  font-size: 32.57px;
+  margin-bottom: 10px;
+}
+
+.right p {
+  font-size: 17.63px;
+  line-height: 1.8;
+}
+
+.block {
+  margin-bottom: 50px;
+}
+
+.experience {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* 반응형 */
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
