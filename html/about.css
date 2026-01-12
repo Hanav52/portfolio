@@ -8,16 +8,27 @@
 }
 
 body {
-    height: 950px;
   font-family: "asta sans";
   color: #000;
 }
 
 .header {
-  padding: 40px 150px;
+  width: 100%;
+  padding: 40px 50px;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.5s ease;
+}
+.on {
+  color: white;
+  .nav a {
+    color: #fff;
+  }
+  .nav {
+    border: 3px solid #fff;
+  }
 }
 
 .logo {
@@ -27,25 +38,144 @@ body {
 }
 
 .nav {
-  border: 2px solid #000;
+  border: 3px solid #000;
+  font-weight: 400;
   border-radius: 50px;
-  padding: 14px 30px;
+  padding: 14px 40px;
   display: flex;
-  gap: 30px;
+  gap: 76px;
   align-items: center;
 }
 
 .nav a {
+  font-size: 26.67px;
+  font-family: "Bebas Neue";
   text-decoration: none;
   color: #000;
-  font-weight: 600;
 }
 
 .container {
-  padding: 0 150px 50px;
+  padding: 172.8px 150px 50px;
   display: grid;
   grid-template-columns: 1.1fr 1fr 1fr;
   gap: 60px;
+}
+
+/* 부드러운 전환 */
+.header, .nav, .nav a, .menu i, .logo img {
+  transition: color .25s ease, border-color .25s ease, filter .25s ease;
+}
+
+/* 다크 섹션 위에 있을 때 */
+.header.is-dark .nav {
+  border-color: #fff;
+}
+
+.header.is-dark .nav a {
+  color: #fff;
+}
+
+.header.is-dark .menu i {
+  color: #fff;
+}
+
+/* 로고가 이미지면: 흰색 로고로 바꾸거나, 임시로 반전 */
+.header.is-dark .logo img {
+  filter: invert(1) brightness(2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Produce-section01 {
+  height: 950px;
+  padding: 126px 150px 50px;
+  background-color: black;
+  display: flex;
+  gap: 93px;
+  color: #fff;
+}
+.produce-title {
+  font-size: 33.33px;
+  font-family: "Bebas Neue";
+
+}
+.produce-header {
+  font-size: 85px;
+  font-family: "Asta+Sans";
+  font-weight: 500;
+  line-height: 0.9;
+  color: #b7ff2a;
+  letter-spacing: 2px;
+}
+.produce-header span {
+  font-family: "Bebas Neue";
+}
+.line {
+  margin-top: 23px;
+  border-top: 1px solid #fff;
+}
+
+.body-header {
+  margin-top: 22px;
+  font-family: "Asta+Sans";
+  font-weight: 500;
+  font-size: 20px;
+}
+.body-body {
+  margin-top: 21px;
+  font-family: "Asta+Sans";
+  font-weight: 400;
+  font-size: 18px;
+}
+.body-body span {
+  color: #b7ff2a;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Produce-section02 {
+  height: 950px;
+  padding: 172.8px 150px 50px;
+  background-color: white;
+
+}
+.Produce-section03 {
+  height: 950px;
+  padding: 126px 150px 50px;
+  background-color: black;
+  display: flex;
+  gap: 93px;
+  color: #fff;
+
+}
+.Produce-section04 {
+  height: 950px;
+  padding: 172.8px 150px 50px;
+  background-color: white;
+
 }
 
 .intro-title {
@@ -65,7 +195,8 @@ body {
 }
 
 .skills-title {
-    font-family: "bebus nune";
+    font-family: "Bebas Neue";
+    letter-spacing: 2px;
   font-size: 36.59px;
   font-weight: 700;
   margin-bottom: 34px;
@@ -140,7 +271,8 @@ body {
 }
 
 .right h3 {
-    font-family: "bebus nune";
+    font-family: "Bebas Neue";
+    letter-spacing: 2px;
 
   color: #7e3aed;
   font-size: 32.57px;
@@ -156,11 +288,19 @@ body {
   margin-bottom: 50px;
 }
 
+.exp {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+  font-size: 17.63px;
+}
+
 .experience {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
+    list-style: none;
 }
 
 /* 반응형 */
