@@ -94,6 +94,22 @@ function changeBg() {
   }
 }
 
+function pullAnimation() {
+  const section = document.querySelector('.main-section01');
+
+  if (section.classList.contains('is-pull')) return;
+
+  section.classList.add('is-pull');
+
+  setTimeout(() => {
+    section.classList.remove('is-pull');
+  }, 500);
+
+  changeBg();
+}
+
+
+
 //스크롤마다 헤더 색상 변경
 document.addEventListener("DOMContentLoaded", () => {
 const header = document.querySelector("#header");

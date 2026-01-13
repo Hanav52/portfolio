@@ -14,10 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <script src="../js/main.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
@@ -26,29 +23,32 @@
 
 <body>
   <!-- 헤더 -->
-    <header class="header" id="header">
-      <div class="logo">
-        <a href="main03.html">
-          <img src="../images/headerlogo-black.png" id="headerLogo">
-        </a>
-      </div>
+  <header class="header" id="header">
+    <div class="logo">
+      <a href="main.html">
+        <img src="../images/headerlogo-black.png" id="headerLogo">
+      </a>
+    </div>
 
-      <nav class="nav">
-        <a href="produce.html">ABOUT ME</a>
-        <a href="allportfolio.html">PROJECT</a>
-        <a href="#">CONTACT</a>
-        <span class="menu"><i class="fa-solid fa-bars fa-lg"></i></span>
-      </nav>
-    </header>
+    <nav class="nav">
+      <a href="produce.html">ABOUT ME</a>
+      <a href="allportfolio.html">PROJECT</a>
+      <a href="#">CONTACT</a>
+      <span class="menu"><i class="fa-solid fa-bars fa-lg"></i></span>
+    </nav>
+  </header>
   <!-- section01 -->
   <div class="wrap">
-    
+
 
     <div class="main-section01">
-      <div class="line"></div>
-      <button class="circle" onclick="changeBg()">
-        <div class="plus">+</div>
-      </button>
+      <div class="pull-wrap">
+        <div class="line"></div>
+        <button class="circle" onclick="pullAnimation()">
+          <div class="plus">+</div>
+        </button>
+      </div>
+
       <div class="text">click</div>
       <img src="../images/main/ai.png" class="photoshop">
       <img src="../images/main/ps.png" class="illustrator">
@@ -57,7 +57,7 @@
       <img src="../images/main/js.png" class="css">
       <img src="../images/main/css.png" class="js">
       <img src="../images/main/wind.png" class="wind">
-      
+
       <div class="marquee">
         <div class="track">
           <!-- 2번째단락 -->
@@ -66,7 +66,7 @@
           <img src="../images/main/cloud03.png" class="cloud cloud03">
           <img src="../images/main/cloud04.png" class="cloud cloud04">
         </div>
-          <!-- 3번째단락 -->
+        <!-- 3번째단락 -->
         <div class="track-code">
           <span class="cloud hello-code">#hello</span>
           <span class="cloud body-code">&lt;body/&gt;</span>

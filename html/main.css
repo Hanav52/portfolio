@@ -215,7 +215,7 @@ a {
 }
 .plus {
     font-size: 30px;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 
@@ -356,4 +356,26 @@ a {
   top: 389px;
   animation-duration: 50s;
   animation-delay: -7s;
+}
+
+
+
+
+.pull-wrap {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+/* 눌렸을 때 */
+.is-pull .pull-wrap {
+  transform: translateY(10px);
+}
+
+/* 플러스는 옵션 */
+.plus {
+  transition: transform 0.3s ease;
+}
+
+.is-pull .plus {
+  transform: rotate(90deg);
 }
