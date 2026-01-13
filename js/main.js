@@ -59,28 +59,37 @@ function changeBg() {
   if (bgIndex === 1) {
     wind.src = "../images/main/wind.png";
     document.querySelector(".wind").classList.add("show-wind");
-
     windSpin.timeScale(0.6); // 느리게
     windSpin.play();
+
+    document.querySelector(".track").style.opacity = 1;
+    document.querySelector(".track-code").style.opacity = 0;
 
   } else if (bgIndex === 2) {
     wind.src = "../images/main/wind-color.png";
     html5.src = "../images/main/html5.png";
     css.src = "../images/main/css.png";
     js.src = "../images/main/js.png";
+
     document.querySelector(".wind").classList.add("show-wind");
+    document.querySelector(".html5").classList.add("show-wind");
+    document.querySelector(".css").classList.add("show-wind");
+    document.querySelector(".js").classList.add("show-wind");
 
     windSpin.timeScale(1.4); // 빠르게
     windSpin.play();
 
-
+    document.querySelector(".track").style.opacity = 0;
+    document.querySelector(".track-code").style.opacity = 1;
 
   } else {
-    wind.src = "";
-    html5.src = "";
-    css.src = "";
-    js.src = "";
+    document.querySelector(".html5").classList.remove("show-wind");
+    document.querySelector(".css").classList.remove("show-wind");
+    document.querySelector(".js").classList.remove("show-wind");
     document.querySelector(".wind").classList.remove("show-wind");
+    document.querySelector(".track").style.opacity = 0;
+    document.querySelector(".track-code").style.opacity = 0;
+
     windSpin.pause();
   }
 }

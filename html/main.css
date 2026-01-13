@@ -15,6 +15,8 @@ a {
 }
 
 body {
+  width: 100%;
+    height: 100%;
   font-family: "asta sans";
 }
 
@@ -111,6 +113,7 @@ a {
 
 /* 1. 둥둥 떠다니는 구름 */
 .photoshop {
+  pointer-events: none;
     position: absolute;
     top: 326px;
     left: 1617px;
@@ -118,6 +121,7 @@ a {
 }
 
 .illustrator {
+  pointer-events: none;
     position: absolute;
     top: 233px;
     left: 1556px;
@@ -205,6 +209,9 @@ a {
     color: #000;
     font-family: "Bebas Neue";
     font-size: 40px;
+    animation: bounce; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
 }
 .plus {
     font-size: 30px;
@@ -224,19 +231,23 @@ a {
   width: 103.79px;
   left: 61px;
     top: 302px;
-  opacity: 1;
+  opacity: 0;
   transform-origin: 50% 50%;
   /* transition: opacity 0.4s ease, transform 0.4s ease;
   transform: rotate(-20deg) scale(0.9); */
 }
 
 .window {
+  pointer-events: none;
+
     position: absolute;
     left: 1522px;
     top: 187px;
 }
 
 .html5 {
+  pointer-events: none;
+  opacity: 0;
     position: absolute;
     left: 1547px;
     top: 216px;
@@ -244,6 +255,8 @@ a {
 }
 
 .css {
+  pointer-events: none;
+  opacity: 0;
     position: absolute;
     left: 1618px;
     top: 264px;
@@ -251,12 +264,96 @@ a {
 }
 
 .js {
+  pointer-events: none;
+  opacity: 0;
     position: absolute;
     left: 1559px;
     top: 346px;
     animation: balloonFloat 5s ease-in-out infinite;
 }
 .show-wind {
+  pointer-events: none;
   opacity: 1;
   /* transform: rotate(0deg) scale(1); */
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  height: 950px;
+  pointer-events: none;
+}
+
+.track {
+  opacity: 0;
+}
+.track-code {
+  opacity: 0;
+  color: #b7ff2a;
+}
+
+/* 공통 */
+.cloud {
+  position: absolute;
+  animation: cloudMove linear infinite;
+}
+
+/* 개별 위치 + 속도 */
+.cloud01 {
+  top: 183px;
+  animation-duration: 35s;
+  animation-delay: -20s;
+}
+
+.cloud02 {
+  top: 26px;
+  animation-duration: 55s;
+  animation-delay: -25s;
+}
+
+.cloud03 {
+  top: 171px;
+  animation-duration: 60s;
+  animation-delay: -25s;
+}
+
+.cloud04 {
+  top: 40px;
+  animation-duration: 50s;
+  animation-delay: -7s;
+}
+
+/* 핵심 */
+@keyframes cloudMove {
+  from {
+    transform: translateX(110vw);
+  }
+  to {
+    transform: translateX(-30vw);
+  }
+}
+
+.hello-code {
+  font-size: 130px;
+  top: 117px;
+  animation-duration: 60s;
+  animation-delay: -25s;
+}
+.body-code {
+  font-size: 130px;
+  top: 195px;
+  animation-duration: 55s;
+  animation-delay: -35s;
+}
+.div-code {
+  font-size: 130px;
+  top: 361px;
+  animation-duration: 35s;
+  animation-delay: -20s;
+}
+.function-code {
+  font-size: 130px;
+  top: 389px;
+  animation-duration: 50s;
+  animation-delay: -7s;
 }
