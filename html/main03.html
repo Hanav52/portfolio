@@ -1,65 +1,115 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About & Contact</title>
-  <link rel="stylesheet" href="../css/main02.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="../css/main02.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="../js/main.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+
 </head>
+
 <body>
-
-<main class="canvas">
-
-  <section class="about-wrap">
-
-    <!-- LEFT -->
-    <div class="left">
-      <h1>
-        ABOUT ME &<br />
-        CONTACT
-      </h1>
-
-      <div class="circle-wrap">
-        <div class="circle"></div>
-
-        <button class="click-btn">
-          ↗
-          <span>CLICK</span>
-        </button>
+  <!-- 헤더 -->
+    <header class="header" id="header">
+      <div class="logo">
+        <a href="main03.html">
+          <img src="../images/headerlogo-black.png" id="headerLogo">
+        </a>
       </div>
+
+      <nav class="nav">
+        <a href="produce.html">ABOUT ME</a>
+        <a href="allportfolio.html">PROJECT</a>
+        <a href="#">CONTACT</a>
+        <span class="menu"><i class="fa-solid fa-bars fa-lg"></i></span>
+      </nav>
+    </header>
+  <!-- section01 -->
+  <div class="wrap">
+    
+
+    <div class="main-section01">
+      <div class="line"></div>
+      <button class="circle" onclick="changeBg()">
+        <div class="plus">+</div>
+      </button>
+      <div class="text">click</div>
+      <img src="../images/main/ai.png" class="photoshop">
+      <img src="../images/main/ps.png" class="illustrator">
+      <img src="../images/main/window.png" class="window">
+      <img src="" class="html5">
+      <img src="" class="css">
+      <img src="" class="js">
+      <img src="" class="wind">
+
     </div>
+  </div>
 
-    <!-- RIGHT -->
-    <div class="right">
-      <div class="preview-box"></div>
+  <div class="wrapwrap">
 
-      <div class="contact">
-        <p class="question">
-          함께 일할 디자이너 & 웹퍼블리셔를 찾고 계신가요?
-        </p>
-        <div class="boxbox">
+  </div>
+
+  <!-- section03 -->
+  <main class="canvas">
+
+    <section class="about-wrap">
+
+      <!-- LEFT -->
+      <div class="left">
+        <h1>
+          ABOUT ME &<br />
+          CONTACT
+        </h1>
+
+        <div class="circle-wrap">
+          <div class="circlecircle"></div>
+
+          <button class="click-btn">
+            ↗
+            <span>CLICK</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+        <div class="preview-box"></div>
+
+        <div class="contact">
+          <p class="question">
+            함께 일할 디자이너 & 웹퍼블리셔를 찾고 계신가요?
+          </p>
+          <div class="boxbox">
             <p class="email">WNSRL8329@GMAIL.COM</p>
 
             <div class="mail">
-            <span>메일 보내기</span>
-            <button>→</button>
+              <span>메일 보내기</span>
+              <button>→</button>
             </div>
+          </div>
+
+
+          <p class="desc">
+            저에게 궁금한 점이 있으시다면 연락해 주세요 :) 빠르게 답장 드리겠습니다!
+          </p>
         </div>
-        
-
-        <p class="desc">
-          저에게 궁금한 점이 있으시다면 연락해 주세요 :) 빠르게 답장 드리겠습니다!
-        </p>
       </div>
-    </div>
 
-  </section>
+    </section>
 
-</main>
-
-<script src="script.js"></script>
+  </main>
 </body>
+
 </html>

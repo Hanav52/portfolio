@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap');
+
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+ul, ol, li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	outline: 0;
+}
+
+body {
+  font-family: "asta sans";
+}
+
+.wrap {
+    height: 950px;
+    background-image: url(../images/main/main01.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transition: background-image 0.3s ease;
+}
+
+.header {
+  width: 100%;
+  padding: 40px 50px;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+  z-index: 9999;
+}
+.on {
+  color: white;
+  .nav a {
+    color: #fff;
+  }
+  .nav {
+    border: 3px solid #fff;
+  }
+}
+a {
+    cursor: pointer;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.nav {
+  border: 3px solid #000;
+  font-weight: 400;
+  border-radius: 50px;
+  padding: 14px 40px;
+  display: flex;
+  gap: 76px;
+  align-items: center;
+}
+
+.nav a {
+  font-size: 26.67px;
+  font-family: "Bebas Neue";
+  text-decoration: none;
+  color: #000;
+}
+
+.container {
+  padding: 172.8px 150px 50px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 60px;
+}
+
+/* 부드러운 전환 */
+.header, .nav, .nav a, .menu i, .logo img {
+  transition: color .25s ease, border-color .25s ease, filter .25s ease;
+}
+
+/* 다크 섹션 위에 있을 때 */
+.header.is-dark .nav {
+  border-color: #fff;
+}
+
+.header.is-dark .nav a {
+  color: #fff;
+}
+
+.header.is-dark .menu i {
+  color: #fff;
+}
+
+/* 로고가 이미지면: 흰색 로고로 바꾸거나, 임시로 반전 */
+.header.is-dark .logo img {
+  filter: invert(1) brightness(2);
+}
+
+
+.main-section01 {
+    position: relative;
+}
+
+/* 1. 둥둥 떠다니는 구름 */
+.photoshop {
+    position: absolute;
+    top: 326px;
+    left: 1617px;
+    animation: float 5s ease-in-out infinite;
+}
+
+.illustrator {
+    position: absolute;
+    top: 233px;
+    left: 1556px;
+    animation: float 4s ease-in-out infinite;
+}
+
+
+/* 4. 열기구 (천천히 상승/하강) */
+.balloon-1 {
+    top: 48%;
+    left: 40.5%;
+    width: 72px;
+    animation: balloonFloat 6s ease-in-out infinite;
+}
+
+.balloon-2 {
+    top: 32%;
+    left: 29.5%;
+    width: 50px;
+    animation: balloonFloat 5.5s ease-in-out infinite;
+}
+
+.balloon-3 {
+    top: 63%;
+    right: 31.6%;
+    width: 90px;
+    animation: balloonFloat 6.5s ease-in-out infinite;
+}
+
+/* --- 애니메이션 정의 --- */
+
+/* 둥둥 효과 */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(10px, -15px);
+    }
+}
+
+/* 열기구 효과 */
+@keyframes balloonFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+
+.line {
+    /* width: 50px; */
+    height: 301px;
+    position: absolute;
+    border-left: 3px solid #000000;
+    left: 39.3%;
+    top: 219px;
+}
+
+.circle {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    border: 3px solid #000;
+    left: 38.5%;
+    top: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    position: absolute;
+    left: 34%;
+    top: 513px;
+    color: #000;
+    font-family: "Bebas Neue";
+    font-size: 40px;
+}
+.plus {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.wrapwrap {
+    width: 100%;
+    height: 950px;
+    background-color: #000;
+}
+
+
+.wind {
+  position: absolute;
+  width: 103.79px;
+  left: 61px;
+    top: 302px;
+  opacity: 1;
+  transform-origin: 50% 50%;
+  /* transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: rotate(-20deg) scale(0.9); */
+}
+
+.window {
+    position: absolute;
+    left: 1522px;
+    top: 187px;
+}
+
+.html5 {
+    position: absolute;
+    left: 1547px;
+    top: 216px;
+    animation: balloonFloat 5s ease-in-out infinite;
+}
+
+.css {
+    position: absolute;
+    left: 1618px;
+    top: 264px;
+    animation: float 5s ease-in-out infinite;
+}
+
+.js {
+    position: absolute;
+    left: 1559px;
+    top: 346px;
+    animation: balloonFloat 5s ease-in-out infinite;
+}
+.show-wind {
+  opacity: 1;
+  /* transform: rotate(0deg) scale(1); */
+}

@@ -1,88 +1,112 @@
-const frame = document.querySelector('section');
-const lists = frame.querySelectorAll("article"); 
-const deg = 45; //각각의 article 요소가 회전할 각도
-const len = lists.length - 1; //순번이 0부터 시작하므로 전체 개수에서 1을 뺌
-const audio = frame.querySelectorAll('audio');
+const bgImages = [
+  "../images/main/main01.png",
+  "../images/main/main02.png",
+  "../images/main/main03.png"
+];
 
-let i = 0;
+const photoshop = [
+    "../images/main/ai.png",
+    "../images/main/ps-color.png",
+    ""
+];
 
-const prev = document.querySelector('.btnPrev');
-const next = document.querySelector('.btnNext');
+const illustrator = [
+    "../images/main/ps.png",
+    "../images/main/ai-color.png",
+    ""
+];
 
-for (let el of lists) {
-    let pic = el.querySelector(".pic");
-    el.style.transform = `rotate(${deg * i}deg) translateY(-100vh)`;
-    pic.style.backgroundImage = `url(../img/member${i + 1}.jpg)`;
-    i++;
+const window1 = [
+    "../images/main/window.png",
+    "../images/main/window03.png",
+    "../images/main/window02.png"
+];
 
-    let play = el.querySelector(".play");
-    let pause = el.querySelector(".pause");
-    let load = el.querySelector(".load");
+const wind = document.querySelector(".wind");
+const html5 = document.querySelector(".html5");
+const css = document.querySelector(".css");
+const js = document.querySelector(".js");
 
-    play.addEventListener('click', e => {
-        let isActive = e.currentTarget.closest('article').classList.contains('on');
-        if (isActive) {
-            e.currentTarget.closest('article').querySelector('.pic').classList.add('on');
-            e.currentTarget.closest('article').querySelector('audio').play();
-        }
-    });
+// 바람개비 회전 애니메이션 (처음엔 멈춘 상태)
+const windSpin = gsap.to(wind, {
+  rotation: 360,
+  duration: 2,
+  ease: "linear",
+  repeat: -1,
+  paused: true
+});
 
-    pause.addEventListener('click', e => {
-        let isActive = e.currentTarget.closest('article').classList.contains('on');
-        if (isActive) {
-            e.currentTarget.closest('article').querySelector('.pic').classList.remove('on');
-            e.currentTarget.closest('article').querySelector('audio').pause();
-        }
-    })
-    load.addEventListener('click', e => {
-        let isActive = e.currentTarget.closest('article').classList.contains('on');
-        if (isActive) {
-            e.currentTarget.closest('article').querySelector('.pic').classList.add('on');
-            e.currentTarget.closest('article').querySelector('audio').load();
-            e.currentTarget.closest('article').querySelector('audio').play();
-        }
-    })
+let bgIndex = 0;
+let photoIndex = 0;
+let illustratorIndex = 0;
+let windowIndex = 0;
+
+//이미지 변경
+function changeBg() {
+  bgIndex = (bgIndex + 1) % bgImages.length;
+  photoIndex = (photoIndex + 1) % photoshop.length;
+  illustratorIndex = (illustratorIndex + 1) % illustrator.length;
+  windowIndex = (windowIndex + 1) % window1.length;
+
+
+  document.querySelector(".wrap").style.backgroundImage =
+    `url("${bgImages[bgIndex]}")`;
+    document.querySelector(".photoshop").src = photoshop[photoIndex];
+    document.querySelector(".illustrator").src = illustrator[illustratorIndex];
+    document.querySelector(".window").src = window1[windowIndex];
+
+    // 🔥 바람개비 조건
+  if (bgIndex === 1) {
+    wind.src = "../images/main/wind.png";
+    document.querySelector(".wind").classList.add("show-wind");
+
+    windSpin.timeScale(0.6); // 느리게
+    windSpin.play();
+
+  } else if (bgIndex === 2) {
+    wind.src = "../images/main/wind-color.png";
+    html5.src = "../images/main/html5.png";
+    css.src = "../images/main/css.png";
+    js.src = "../images/main/js.png";
+    document.querySelector(".wind").classList.add("show-wind");
+
+    windSpin.timeScale(1.4); // 빠르게
+    windSpin.play();
+
+
+
+  } else {
+    wind.src = "";
+    html5.src = "";
+    css.src = "";
+    js.src = "";
+    document.querySelector(".wind").classList.remove("show-wind");
+    windSpin.pause();
+  }
 }
 
-let num = 0; // 좌우 버튼을 클릭할 때마다 frame 요소를 회원하기 위한 카운트 값
-let active = 0;
+//스크롤마다 헤더 색상 변경
+document.addEventListener("DOMContentLoaded", () => {
+const header = document.querySelector("#header");
+const logo = document.querySelector("#headerLogo");
+const blackLogo = "../images/headerlogo-black.png";
+const whiteLogo = "../images/headerlogo.png";
 
-prev.addEventListener('click', () => {
-    initMusic()
-    num++;
-    frame.style.transform = `rotate(${deg * num}deg)`;
+      window.addEventListener("scroll", function () {
+        if ((window.scrollY >= 847) && (window.scrollY < 1800)) {
+          header.classList.add("on");
+          logo.src = whiteLogo;
 
-    // 현재 패널의 순번이 0이면 다시 마지막 패널의 순번으로 변경하고 
-    // 그렇지 않으면 현재 패널 순번에서 1씩 감소시켜서 activation 함수 호출
-    (active == 0) ? active = len : active--;
-    activation(active, lists);
-})
+        } else if ((window.scrollY >= 1800) && (window.scrollY < 2745)) {
+          header.classList.remove("on");
+          logo.src = blackLogo;
 
-next.addEventListener('click', () => {
-    initMusic()
-    num--;
-    frame.style.transform = `rotate(${deg * num}deg)`;
-
-     // 현재 패널의 순번이 마지막 순번이면 다시 처음 패널의 순번으로 변경하고 
-    // 그렇지 않으면 현재 패널 순번에서 1씩 증가시켜서 activation 함수 호출
-    (active == len ) ? active = 0 : active++;
-    activation(active, lists);
-})
-
-
-function activation(index, lists) {
-    // for문을 돌면서 모든 list의 'on' class 제거
-    for (let el of lists) {
-        el.classList.remove('on'); 
-    }
-    lists[index].classList.add('on');
-};
-
-// 음악 초기화 
-function initMusic() {
-    for (let el of audio) {
-        el.pause();
-        el.load();
-        el.parentElement.previousElementSibling.classList.remove('on');
-    }
-}
+        } else if ((window.scrollY >= 2745) && (window.scrollY < 3700)) {
+          header.classList.add("on");
+          logo.src = whiteLogo;
+        } else {
+          header.classList.remove("on");
+          logo.src = blackLogo;
+        }
+      });
+});

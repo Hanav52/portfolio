@@ -20,6 +20,7 @@ body {
   justify-content: space-between;
   align-items: center;
   transition: all 0.5s ease;
+  z-index: 9999;
 }
 .on {
   color: white;
@@ -101,7 +102,7 @@ body {
   padding: 126px 150px 50px;
   background-color: black;
   display: flex;
-  gap: 93px;
+  gap: 9px;
   color: #fff;
 }
 .produce-title {
@@ -122,7 +123,11 @@ body {
 }
 .line {
   margin-top: 23px;
-  border-top: 1px solid #fff;
+  border-top: 3px solid #ffffff;
+}
+.line-black {
+  margin-top: 23px;
+  border-top: 1px solid #000000;
 }
 
 .body-header {
@@ -135,11 +140,33 @@ body {
   margin-top: 21px;
   font-family: "Asta+Sans";
   font-weight: 400;
-  font-size: 18px;
+  font-size: 17px;
+}
+.body-body-right {
+  margin-top: 21px;
+  font-family: "Asta+Sans";
+  font-weight: 400;
+  font-size: 17px;
 }
 .body-body span {
   color: #b7ff2a;
 }
+.body-body-right span {
+  color: #7e3aed;
+}
+.produce-rightbox {
+  display: flex;
+  align-items: flex-end;
+}
+
+.produce-header-right {
+  font-size: 85px;
+  font-family: "Asta+Sans";
+  font-weight: 500;
+  line-height: 1;
+  color: #7e3aed;
+}
+
 
 
 
@@ -158,22 +185,43 @@ body {
 
 .Produce-section02 {
   height: 950px;
-  padding: 172.8px 150px 50px;
+  padding: 126px 150px 50px;
   background-color: white;
-
+  display: flex;
+  color: #000;
+  gap: 49px;
 }
+.right {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
 .Produce-section03 {
   height: 950px;
   padding: 126px 150px 50px;
   background-color: black;
   display: flex;
-  gap: 93px;
+  gap: 48px;
   color: #fff;
 
 }
 .Produce-section04 {
   height: 950px;
-  padding: 172.8px 150px 50px;
+    padding: 126px 150px 50px;
+display: flex;
+  color: #000;
+  gap: 49px;
   background-color: white;
 
 }
