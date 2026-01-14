@@ -31,7 +31,7 @@
     </nav>
   </header>
   <!-- 1번 포트폴리오 -->
-  <div class="canvas">
+  <div class="canvas" id="canvas01">
 
 
     <!-- MAIN -->
@@ -88,23 +88,13 @@
             <div class="right-arrow">→</div>
           </a>
         </div>
-
-        <ul class="pager">
-          <li class="active">01</li>
-          <li>02</li>
-          <li>03</li>
-          <li>04</li>
-          <li>05</li>
-          <li>06</li>
-          <li>07</li>
-        </ul>
       </section>
 
     </main>
 
   </div>
   <!-- 2번 포트폴리오 -->
-  <div class="canvas02">
+  <div class="canvas02" id="canvas02" >
 
     <!-- MAIN -->
     <main class="hero02">
@@ -156,16 +146,6 @@
         </div>
         <!-- <div class="dots"></div> -->
         <span class="label02">figma</span>
-
-        <ul class="pager02">
-          <li>01</li>
-          <li class="active">02</li>
-          <li>03</li>
-          <li>04</li>
-          <li>05</li>
-          <li>06</li>
-          <li>07</li>
-        </ul>
       </section>
 
 
@@ -174,7 +154,7 @@
 
   </div>
   <!-- 3번 포트폴리오 -->
-  <div class="canvas">
+  <div class="canvas" id="canvas03">
 
 
     <!-- MAIN -->
@@ -223,22 +203,14 @@
           </a>
         </div>
 
-        <ul class="pager">
-          <li>01</li>
-          <li>02</li>
-          <li>03</li>
-          <li>04</li>
-          <li>05</li>
-          <li>06</li>
-          <li>07</li>
-        </ul>
+        
       </section>
 
     </main>
 
   </div>
   <!-- 4번 포트폴리오 -->
-  <div class="canvas02">
+  <div class="canvas02" id="canvas04">
 
 
     <!-- MAIN -->
@@ -293,15 +265,7 @@
         <!-- <div class="dots"></div> -->
         <span class="label02">landing</span>
 
-        <ul class="pager02">
-          <li>01</li>
-          <li>02</li>
-          <li>03</li>
-          <li class="active">04</li>
-          <li>05</li>
-          <li>06</li>
-          <li>07</li>
-        </ul>
+        
       </section>
 
 
@@ -310,7 +274,7 @@
 
   </div>
   <!-- 5번 포트폴리오 -->
-  <div class="canvas">
+  <div class="canvas" id="canvas05">
 
     <!-- MAIN -->
     <main class="hero">
@@ -359,22 +323,14 @@
           </a>
         </div>
 
-        <ul class="pager">
-          <li>01</li>
-          <li>02</li>
-          <li>03</li>
-          <li>04</li>
-          <li class="active">05</li>
-          <li>06</li>
-          <li>07</li>
-        </ul>
+       
       </section>
 
     </main>
 
   </div>
   <!-- 6번 포트폴리오 -->
-  <div class="canvas02">
+  <div class="canvas02" id="canvas06">
 
 
 
@@ -427,15 +383,7 @@
         <!-- <div class="dots"></div> -->
         <span class="label02">landing</span>
 
-        <ul class="pager02">
-          <li>01</li>
-          <li>02</li>
-          <li>03</li>
-          <li>04</li>
-          <li>05</li>
-          <li class="active">06</li>
-          <li>07</li>
-        </ul>
+       
       </section>
 
 
@@ -444,7 +392,7 @@
 
   </div>
   <!-- 7번 포트폴리오 -->
-  <div class="canvas">
+  <div class="canvas" id="canvas07">
 
     <!-- MAIN -->
     <main class="hero">
@@ -496,20 +444,80 @@
           </a>
         </div>
 
-        <ul class="pager">
-          <li>01</li>
-          <li>02</li>
-          <li>03</li>
-          <li>04</li>
-          <li>05</li>
-          <li>06</li>
-          <li class="active">07</li>
-        </ul>
+       
       </section>
 
     </main>
 
   </div>
+
+  <div class="produce-pagination">
+    <button data-target="canvas01">01</button>
+    <button data-target="canvas02">02</button>
+    <button data-target="canvas03">03</button>
+    <button data-target="canvas04">04</button>
+    <button data-target="canvas05">05</button>
+    <button data-target="canvas06">06</button>
+    <button data-target="canvas07">07</button>
+  </div>
+
+
+    <script>
+const header = document.getElementById('header');
+const menuBtn = document.querySelector('.menu');
+
+menuBtn.addEventListener('click', () => {
+  header.classList.toggle('is-menu-open');
+});
+
+
+
+const buttons = document.querySelectorAll('.produce-pagination button');
+const canvass = document.querySelectorAll(
+  '#canvas01, #canvas02, #canvas03, #canvas04, #canvas05, #canvas06, #canvas07'
+);
+
+const purpleSections = ['canvas02', 'canvas04', 'canvas06'];
+
+// 클릭 이동
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.getElementById(btn.dataset.target);
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ⭐ 핵심: 공통 함수
+function updatePagination() {
+  let current = 'canvas01'; // 기본값 intro
+
+  canvass.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+
+    if (window.scrollY >= sectionTop - sectionHeight / 3) {
+      current = section.id;
+    }
+  });
+
+  buttons.forEach(btn => {
+    btn.classList.remove('active', 'green', 'purple');
+
+    if (btn.dataset.target === current) {
+      btn.classList.add('active');
+      btn.classList.add(
+        purpleSections.includes(current) ? 'purple' : 'green'
+      );
+    }
+  });
+}
+
+// 스크롤 시
+window.addEventListener('scroll', updatePagination);
+
+// ⭐ 새로고침 직후
+window.addEventListener('load', updatePagination);
+</script>
 </body>
 
 </html>

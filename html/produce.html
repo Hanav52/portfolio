@@ -22,14 +22,23 @@
     </div>
 
     <nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-main">
       <a href="produce.html">ABOUT ME</a>
       <a href="allportfolio.html">PROJECT</a>
       <a href="#">CONTACT</a>
-      <span class="menu"><i class="fa-solid fa-bars fa-lg"></i></span>
-    </nav>
+    </div>
+
+    <div class="nav-toggle">
+      <span class="menu">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </span>
+    </div>
+  </div>
+</nav>
   </header>
   <!-- 메인자소서 -->
-  <main class="container">
+  <main class="container" id="section00">
 
     <!-- LEFT -->
     <section class="left">
@@ -255,7 +264,7 @@
     </div>
   </div>
   <!-- 4번자소서 -->
-  <div class="Produce-section04">
+  <div class="Produce-section04" id="section04">
     <div class="produce-leftbox right">
       <div class="produce-title">04.</div>
       <img src="../images/produce/2produce.png">
@@ -296,18 +305,28 @@
   </div>
 
   <div class="produce-pagination">
+    <button data-target="section00">INTRO</button>
     <button data-target="section01">01</button>
     <button data-target="section02">02</button>
     <button data-target="section03">03</button>
     <button data-target="section04">04</button>
   </div>
   <script>
+const header = document.getElementById('header');
+const menuBtn = document.querySelector('.menu');
+
+menuBtn.addEventListener('click', () => {
+  header.classList.toggle('is-menu-open');
+});
+
+
+
 const buttons = document.querySelectorAll('.produce-pagination button');
 const sections = document.querySelectorAll(
-  '#section01, #section02, #section03, #section04'
+  '#section00, #section01, #section02, #section03, #section04'
 );
 
-const purpleSections = ['section02', 'section04'];
+const purpleSections = ['section00', 'section02', 'section04'];
 
 // 클릭 이동
 buttons.forEach(btn => {
@@ -317,9 +336,9 @@ buttons.forEach(btn => {
   });
 });
 
-// 스크롤 감지
-window.addEventListener('scroll', () => {
-  let current = '';
+// ⭐ 핵심: 공통 함수
+function updatePagination() {
+  let current = 'section00'; // 기본값 intro
 
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
@@ -335,15 +354,18 @@ window.addEventListener('scroll', () => {
 
     if (btn.dataset.target === current) {
       btn.classList.add('active');
-
-      if (purpleSections.includes(current)) {
-        btn.classList.add('purple');
-      } else {
-        btn.classList.add('green');
-      }
+      btn.classList.add(
+        purpleSections.includes(current) ? 'purple' : 'green'
+      );
     }
   });
-});
+}
+
+// 스크롤 시
+window.addEventListener('scroll', updatePagination);
+
+// ⭐ 새로고침 직후
+window.addEventListener('load', updatePagination);
 </script>
 </body>
 
