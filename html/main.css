@@ -20,6 +20,10 @@ body {
   font-family: "asta sans";
 }
 
+button {
+  cursor: pointer;
+}
+
 .wrap {
     height: 950px;
     background-image: url(../images/main/main01.png);
