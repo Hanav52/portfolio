@@ -1,0 +1,754 @@
+@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap');
+
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  outline: 0;
+}
+a:link {
+  text-decoration: none;
+}
+a:visited, a:active { color: white;}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "asta sans";
+}
+
+button {
+  cursor: pointer;
+}
+
+.wrap {
+  height: 950px;
+  background-image: url(../images/main/main01.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transition: background-image 0.3s ease;
+}
+
+.header {
+  width: 100%;
+  padding: 40px 50px;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease;
+  z-index: 9999;
+}
+
+.on {
+  color: white;
+
+  .nav a {
+    color: #fff;
+  }
+
+  .nav {
+    border: 3px solid #fff;
+  }
+}
+
+a {
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.nav {
+  display: flex;
+  border: 3px solid #000;
+  border-radius: 50px;
+  padding: 14px 40px;
+  overflow: hidden;
+  transition: padding 0.45s cubic-bezier(.34,1.56,.64,1);
+}
+
+/* 내부 flex */
+.nav-inner {
+  display: flex;
+  align-items: center;
+}
+
+/* 메뉴 영역 */
+.nav-main {
+  display: flex;
+  gap: 76px;
+  white-space: nowrap;
+
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(20px);
+  overflow: hidden;
+
+  transition:
+    max-width 0.5s cubic-bezier(.34,1.56,.64,1),
+    opacity 0.3s ease,
+    transform 0.4s ease;
+}
+
+/* 메뉴 버튼 */
+.nav-toggle {
+  cursor: pointer;
+}
+
+/* 🔥 열렸을 때 */
+.header.is-menu-open .nav {
+  padding: 14px 40px; /* ← 테두리가 늘어나는 느낌 */
+
+  .nav-inner {
+    gap: 76px;
+  }
+}
+
+.header.is-menu-open .nav-main {
+  max-width: 1000px; /* 실제 width 아님, 펼침용 */
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+
+.nav a {
+  font-size: 26.67px;
+  font-family: "Bebas Neue";
+  text-decoration: none;
+  color: #000;
+}
+
+.container {
+  padding: 172.8px 150px 50px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 60px;
+}
+
+/* 부드러운 전환 */
+.header, .nav, .nav a, .menu i, .logo img {
+  transition: color .25s ease, border-color .25s ease, filter .25s ease;
+}
+
+/* 다크 섹션 위에 있을 때 */
+.header.is-dark .nav {
+  border-color: #fff;
+}
+
+.header.is-dark .nav a {
+  color: #fff;
+}
+
+.header.is-dark .menu i {
+  color: #fff;
+}
+
+/* 로고가 이미지면: 흰색 로고로 바꾸거나, 임시로 반전 */
+.header.is-dark .logo img {
+  filter: invert(1) brightness(2);
+}
+
+
+.main-section01 {
+  position: relative;
+}
+
+/* 1. 둥둥 떠다니는 구름 */
+.photoshop {
+  pointer-events: none;
+  position: absolute;
+  top: 326px;
+  left: 1617px;
+  animation: float 5s ease-in-out infinite;
+}
+
+.illustrator {
+  pointer-events: none;
+  position: absolute;
+  top: 233px;
+  left: 1556px;
+  animation: float 4s ease-in-out infinite;
+}
+
+
+/* 4. 열기구 (천천히 상승/하강) */
+.balloon-1 {
+  top: 48%;
+  left: 40.5%;
+  width: 72px;
+  animation: balloonFloat 6s ease-in-out infinite;
+}
+
+.balloon-2 {
+  top: 32%;
+  left: 29.5%;
+  width: 50px;
+  animation: balloonFloat 5.5s ease-in-out infinite;
+}
+
+.balloon-3 {
+  top: 63%;
+  right: 31.6%;
+  width: 90px;
+  animation: balloonFloat 6.5s ease-in-out infinite;
+}
+
+/* --- 애니메이션 정의 --- */
+
+/* 둥둥 효과 */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(10px, -15px);
+  }
+}
+
+/* 열기구 효과 */
+@keyframes balloonFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+
+.line {
+  /* width: 50px; */
+  height: 301px;
+  position: absolute;
+  border-left: 3px solid #000000;
+  left: 39.3%;
+  top: 219px;
+}
+
+.circle {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+  border: 3px solid #000;
+  left: 38.5%;
+  top: 520px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.text {
+  position: absolute;
+  left: 34%;
+  top: 513px;
+  color: #000;
+  font-family: "Bebas Neue";
+  font-size: 40px;
+  animation: bounce;
+  /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.plus {
+  font-size: 30px;
+  /* font-weight: bold; */
+}
+
+
+
+.wind {
+  position: absolute;
+  width: 103.79px;
+  left: 61px;
+  top: 302px;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  /* transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: rotate(-20deg) scale(0.9); */
+}
+
+.window {
+  pointer-events: none;
+
+  position: absolute;
+  left: 1522px;
+  top: 187px;
+}
+
+.html5 {
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+  left: 1547px;
+  top: 216px;
+  animation: balloonFloat 5s ease-in-out infinite;
+}
+
+.css {
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+  left: 1618px;
+  top: 264px;
+  animation: float 5s ease-in-out infinite;
+}
+
+.js {
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+  left: 1559px;
+  top: 346px;
+  animation: balloonFloat 5s ease-in-out infinite;
+}
+
+.show-wind {
+  pointer-events: none;
+  opacity: 1;
+  /* transform: rotate(0deg) scale(1); */
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  height: 950px;
+  pointer-events: none;
+}
+
+.track {
+  opacity: 0;
+}
+
+.track-code {
+  opacity: 0;
+  color: #b7ff2a;
+}
+
+/* 공통 */
+.cloud {
+  position: absolute;
+  animation: cloudMove linear infinite;
+}
+
+/* 개별 위치 + 속도 */
+.cloud01 {
+  top: 183px;
+  animation-duration: 35s;
+  animation-delay: -20s;
+}
+
+.cloud02 {
+  top: 26px;
+  animation-duration: 55s;
+  animation-delay: -25s;
+}
+
+.cloud03 {
+  top: 171px;
+  animation-duration: 60s;
+  animation-delay: -25s;
+}
+
+.cloud04 {
+  top: 40px;
+  animation-duration: 50s;
+  animation-delay: -7s;
+}
+
+/* 핵심 */
+@keyframes cloudMove {
+  from {
+    transform: translateX(110vw);
+  }
+
+  to {
+    transform: translateX(-30vw);
+  }
+}
+
+.hello-code {
+  font-size: 130px;
+  top: 117px;
+  animation-duration: 60s;
+  animation-delay: -25s;
+}
+
+.body-code {
+  font-size: 130px;
+  top: 195px;
+  animation-duration: 55s;
+  animation-delay: -35s;
+}
+
+.div-code {
+  font-size: 130px;
+  top: 361px;
+  animation-duration: 35s;
+  animation-delay: -20s;
+}
+
+.function-code {
+  font-size: 130px;
+  top: 389px;
+  animation-duration: 50s;
+  animation-delay: -7s;
+}
+
+
+
+
+.pull-wrap {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+/* 눌렸을 때 */
+.is-pull .pull-wrap {
+  transform: translateY(10px);
+}
+
+/* 플러스는 옵션 */
+.plus {
+  transition: transform 0.3s ease;
+}
+
+.is-pull .plus {
+  transform: rotate(90deg);
+}
+
+
+
+
+
+/* 전체 래퍼 */
+.wrapwrap {
+  height: 950px;
+  display: flex;
+  gap: 24px;
+  padding: 90px 50px;
+  /* align-items: flex-end; */
+  background-color: black;
+
+}
+
+/* 컬럼 */
+.wrapbox {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: flex-end;
+}
+
+.wrapbox-text {
+  width: 430px;
+  height: 371px;
+}
+
+.wrapbox-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapbox1-text {
+  width: 430px;
+  color: white;
+  font-size: 113.56px;
+  line-height: 1;
+}
+
+.wrapbox1-buttonbox {
+  padding: 13px 40px 10px 40px;
+  width: 253px;
+  height: 60px;
+  border: 3px solid #fff;
+  color: rgb(255, 255, 255);
+  border-radius: 30px;
+  font-size: 33.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* 카드 공통 */
+.card {
+  width: 430px;
+  height: 371px;
+  border: 3px solid #fff;
+  border-radius: 30px;
+  padding: 30px;
+  position: relative;
+  font-size: 33.4px;
+  /* color: white; */
+
+}
+
+
+.card > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.2;
+}
+
+/* 02번 카드 */
+.card-02 {
+  background: #fff;
+  color: #000;
+  border: none;
+
+  clip-path: polygon(0 0,
+      55% 0,
+      100% 45%,
+      100% 100%,
+      0 100%);
+}
+
+/* 원형 버튼 */
+.circle-btn {
+  position: absolute;
+  top: 1040px;
+  right: 515px;
+  width: 96px;
+  height: 96px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+  cursor: pointer;
+  color: white;
+}
+
+.column3-click {
+  position: absolute;
+  top: 1010px;
+  right: 500px;
+  font-size: 10px;
+  transform: rotate(-10deg);
+}
+
+/* SIDE */
+.side-card {
+  width: 430px;
+  height: 610px;
+  border: 3px solid #fff;
+  border-radius: 30px;
+  padding: 30px;
+  font-size: 33.4px;
+  color: white;
+
+}
+
+/* .card-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.2;
+} */
+.card-number {
+  color: #fff;
+  mix-blend-mode: difference
+}
+.card-number-img {
+  color: black;
+}
+
+.sidecard-flex {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.sidecard-title {
+  font-size: 20px;
+  color: #fff;
+  mix-blend-mode: difference
+}
+
+.card-title,
+.card-nameEng {
+  font-size: 20px;
+  color: #c5c5c5;
+  mix-blend-mode: difference
+}
+
+.card-title-img,
+.card-nameEng-img {
+  font-size: 20px;
+  color: #c5c5c5;
+}
+
+.card-tag {
+  font-size: 23.5px;
+  color: #fff;
+  mix-blend-mode: difference
+}
+
+.card-tag-img {
+  font-size: 23.5px;
+  color: #fff;
+}
+
+.card-name,
+.sidecard-tag {
+  font-size: 25px;
+  color: #fff;
+  mix-blend-mode: difference
+
+}
+
+.card img.swipeimage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 9;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sidecard-tag {
+  margin-top: 5px;
+}
+
+.sidecard-ng {
+  margin-top: 20px;
+}
+
+.notion,
+.github {
+  font-size: 82.45px;
+  border-bottom: 3px solid #fff;
+}
+
+.sidecard-ng-flex {
+  display: flex;
+  gap: 51px;
+  align-items: center;
+}
+
+.github {
+  padding-top: 14px;
+}
+
+.circle-ng {
+  width: 76px;
+  height: 76px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+  cursor: pointer;
+  color: white;
+}
+
+
+
+
+
+
+/* 모달 전체 */
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 2000;
+}
+
+/* 활성화 */
+.contact-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 모달 박스 */
+.contact-modal-inner {
+  background: #fff;
+  color: #000;
+  width: 420px;
+  padding: 40px;
+  border-radius: 24px;
+  position: relative;
+  text-align: center;
+}
+
+/* 닫기 버튼 */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 텍스트 */
+.modal-sub {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.modal-mail {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+/* 메일 버튼 */
+.mail-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.mail-btn:hover {
+  background: #333;
+}
