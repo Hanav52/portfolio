@@ -11,6 +11,7 @@
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="../js/portfolio.js"></script>
+  <script src="../js/header.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 </head>
 
@@ -24,11 +25,20 @@
     </div>
 
     <nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-main">
       <a href="produce.html">ABOUT ME</a>
       <a href="allportfolio.html">PROJECT</a>
       <a href="#">CONTACT</a>
-      <span class="menu"><i class="fa-solid fa-bars fa-lg"></i></span>
-    </nav>
+    </div>
+
+    <div class="nav-toggle">
+      <span class="menu">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </span>
+    </div>
+  </div>
+</nav>
   </header>
   <!-- 1번 포트폴리오 -->
   <div class="canvas" id="canvas01">
@@ -66,8 +76,8 @@
         <div class="tools">
           <img src="../images/photoshop.png">
           <img src="../images/figma.png">
-          <img src="../images/html.png">
-          <img src="../images/css.png">
+          <img src="../images/free-icon-html-5-732212.png">
+          <img src="../images/free-icon-css-3-732190.png">
           <img src="../images/java.png">
           <img src="../images/github.png">
         </div>
@@ -463,15 +473,6 @@
 
 
     <script>
-const header = document.getElementById('header');
-const menuBtn = document.querySelector('.menu');
-
-menuBtn.addEventListener('click', () => {
-  header.classList.toggle('is-menu-open');
-});
-
-
-
 const buttons = document.querySelectorAll('.produce-pagination button');
 const canvass = document.querySelectorAll(
   '#canvas01, #canvas02, #canvas03, #canvas04, #canvas05, #canvas06, #canvas07'

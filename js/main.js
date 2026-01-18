@@ -120,7 +120,7 @@ const whiteLogo = "../images/headerlogo.png";
       window.addEventListener("scroll", function () {
         if ((window.scrollY >= 847) && (window.scrollY < 1800)) {
           header.classList.add("on");
-          logo.src = whiteLogo;
+          logo.src = "";
 
         } else if ((window.scrollY >= 1800) && (window.scrollY < 2745)) {
           header.classList.remove("on");

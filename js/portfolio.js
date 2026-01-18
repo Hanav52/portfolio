@@ -5,7 +5,6 @@ const blackLogo = "../images/headerlogo-black.png";
 const whiteLogo = "../images/headerlogo.png";
 
       window.addEventListener("scroll", function () {
-        console.log(this.scrollY);
         if ((window.scrollY >= 847) && (window.scrollY < 1800)) {
           header.classList.remove("on");
           logo.src = blackLogo;
