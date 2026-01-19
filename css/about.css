@@ -10,6 +10,7 @@
 body {
   font-family: "asta sans";
   color: #000;
+  overscroll-behavior: none;
 }
 
 .header {

@@ -21,34 +21,38 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", syncIndex);
 
   window.addEventListener(
-    "wheel",
-    (e) => {
-      if (isScrolling) return;
+  "wheel",
+  (e) => {
+    // 🔥 마지막에서 아래로, 첫 섹션에서 위로 → 기본 스크롤 차단
+    if (
+      (currentIndex === sections.length - 1 && e.deltaY > 0) ||
+      (currentIndex === 0 && e.deltaY < 0)
+    ) {
+      e.preventDefault();
+      return;
+    }
 
-      // 🔥 아주 조금만 움직여도 감지
-      wheelDelta += e.deltaY;
+    if (isScrolling) return;
 
-      if (Math.abs(wheelDelta) < 40) return; // ← 핵심 (기존보다 훨씬 낮음)
+    wheelDelta += e.deltaY;
+    if (Math.abs(wheelDelta) < 40) return;
 
-      isScrolling = true;
+    isScrolling = true;
 
-      if (wheelDelta > 0) {
-        currentIndex = Math.min(currentIndex + 1, sections.length - 1);
-      } else {
-        currentIndex = Math.max(currentIndex - 1, 0);
-      }
+    currentIndex += wheelDelta > 0 ? 1 : -1;
+    currentIndex = Math.max(0, Math.min(currentIndex, sections.length - 1));
 
-      sections[currentIndex].scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+    sections[currentIndex].scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
 
-      wheelDelta = 0;
+    wheelDelta = 0;
 
-      setTimeout(() => {
-        isScrolling = false;
-      }, 700);
-    },
-    { passive: false }
-  );
+    setTimeout(() => {
+      isScrolling = false;
+    }, 700);
+  },
+  { passive: false }
+);
 });
