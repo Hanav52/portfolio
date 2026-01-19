@@ -7,11 +7,14 @@
   <title>Project Hero</title>
   <link rel="stylesheet" href="../css/portfolio01.css" />
   <link rel="stylesheet" href="../css/portfolio02.css" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="../js/portfolio.js"></script>
   <script src="../js/header.js" defer></script>
+  <script src="../js/scroll.js" defer></script>
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 </head>
 
@@ -25,20 +28,20 @@
     </div>
 
     <nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-main">
-      <a href="produce.html">ABOUT ME</a>
-      <a href="allportfolio.html">PROJECT</a>
-      <a href="#">CONTACT</a>
-    </div>
+      <div class="nav-inner">
+        <div class="nav-main">
+          <a href="produce.html">ABOUT ME</a>
+          <a href="allportfolio.html">PROJECT</a>
+          <a href="#" id="contactBtn">CONTACT</a>
+        </div>
 
-    <div class="nav-toggle">
-      <span class="menu">
-        <i class="fa-solid fa-bars fa-lg"></i>
-      </span>
-    </div>
-  </div>
-</nav>
+        <div class="nav-toggle">
+          <span class="menu">
+            <i class="fa-solid fa-bars fa-lg"></i>
+          </span>
+        </div>
+      </div>
+    </nav>
   </header>
   <!-- 1번 포트폴리오 -->
   <div class="canvas" id="canvas01">
@@ -469,6 +472,19 @@
     <button data-target="canvas05">05</button>
     <button data-target="canvas06">06</button>
     <button data-target="canvas07">07</button>
+  </div>
+
+  <div class="contact-modal" id="contactModal">
+    <div class="contact-modal-inner">
+      <button class="close-btn" id="closeModal">×</button>
+
+      <p class="modal-sub">함께 일할 디자이너 & 웹퍼블리셔를 찾고 계신가요?</p>
+      <p class="modal-mail">WNSRL8329@GMAIL.COM</p>
+
+      <a href="mailto:WNSRL8329@gmail.com" class="mail-btn">
+        메일 보내기&nbsp;&nbsp;&nbsp;&nbsp; →
+      </a>
+    </div>
   </div>
 
 
