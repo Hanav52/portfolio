@@ -63,19 +63,19 @@
       <h3 class="skills-title purple">SKILLS</h3>
 
       <ul class="skills">
-        <li class="skill"><img src="../images/illustrator.png" width="48px" height="48px"><span class="bar"></span></li>
+        <li class="skill"><img src="../images/illustrator.png" width="48px" height="48px"><span class="bar" data-percent="75"></span></li>
         <li class="skill"><img src="../images/free-icon-html-5-5968267.png" width="48px" height="48px"><span
-            class="bar"></span></li>
-        <li class="skill"><img src="../images/react.png" width="48px" height="48px"><span class="bar"></span></li>
+            class="bar" data-percent="85"></span></li>
+        <li class="skill"><img src="../images/react.png" width="48px" height="48px"><span class="bar" data-percent="75"></span></li>
       </ul>
       <ul class="skills">
-        <li class="skill"><img src="../images/photoshop.png" width="48px" height="48px"><span class="bar"></span></li>
+        <li class="skill"><img src="../images/photoshop.png" width="48px" height="48px"><span class="bar" data-percent="80"></span></li>
         <li class="skill"><img src="../images/free-icon-css-3-5968242.png" width="48px" height="48px"><span
-            class="bar"></span></li>
+            class="bar" data-percent="85"></span></li>
       </ul>
       <ul class="skills">
-        <li class="skill"><img src="../images/figma.png" width="48px" height="48px"><span class="bar"></span></li>
-        <li class="skill"><img src="../images/java.png" width="48px" height="48px"><span class="bar"></span></li>
+        <li class="skill"><img src="../images/figma.png" width="48px" height="48px"><span class="bar" data-percent="85"></span></li>
+        <li class="skill"><img src="../images/java.png" width="48px" height="48px"><span class="bar" data-percent="85"></span></li>
       </ul>
     </section>
 
@@ -318,6 +318,9 @@
   </div>
 
   <script>
+    document.querySelectorAll(".bar").forEach(bar => {
+    bar.style.setProperty("--percent", bar.dataset.percent);
+  });
     const buttons = document.querySelectorAll('.produce-pagination button');
     const sections = document.querySelectorAll(
       '#section00, #section01, #section02, #section03, #section04'

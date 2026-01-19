@@ -376,9 +376,24 @@ display: flex;
 }
 
 .bar {
-    width: 120px;
+  position: relative;
+  width: 120px;
   height: 16px;
   background: #ddd;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* 바 채워지는 부분 */
+.bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: calc(var(--percent, 70) * 1%);
+  background: #000;
+  border-radius: 999px;
 }
 
 .center img {
