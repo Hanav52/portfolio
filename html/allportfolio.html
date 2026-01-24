@@ -7,6 +7,10 @@
   <title>Project Hero</title>
   <link rel="stylesheet" href="../css/portfolio01.css" />
   <link rel="stylesheet" href="../css/portfolio02.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
@@ -107,7 +111,7 @@
 
   </div>
   <!-- 2번 포트폴리오 -->
-  <div class="canvas02" id="canvas02" >
+  <div class="canvas02" id="canvas02">
 
     <!-- MAIN -->
     <main class="hero02">
@@ -216,7 +220,7 @@
           </a>
         </div>
 
-        
+
       </section>
 
     </main>
@@ -278,7 +282,7 @@
         <!-- <div class="dots"></div> -->
         <span class="label02">landing</span>
 
-        
+
       </section>
 
 
@@ -336,7 +340,7 @@
           </a>
         </div>
 
-       
+
       </section>
 
     </main>
@@ -396,7 +400,7 @@
         <!-- <div class="dots"></div> -->
         <span class="label02">landing</span>
 
-       
+
       </section>
 
 
@@ -457,7 +461,7 @@
           </a>
         </div>
 
-       
+
       </section>
 
     </main>
@@ -488,53 +492,53 @@
   </div>
 
 
-    <script>
-const buttons = document.querySelectorAll('.produce-pagination button');
-const canvass = document.querySelectorAll(
-  '#canvas01, #canvas02, #canvas03, #canvas04, #canvas05, #canvas06, #canvas07'
-);
+  <script>
+    const buttons = document.querySelectorAll('.produce-pagination button');
+    const canvass = document.querySelectorAll(
+      '#canvas01, #canvas02, #canvas03, #canvas04, #canvas05, #canvas06, #canvas07'
+    );
 
-const purpleSections = ['canvas02', 'canvas04', 'canvas06'];
+    const purpleSections = ['canvas02', 'canvas04', 'canvas06'];
 
-// 클릭 이동
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const target = document.getElementById(btn.dataset.target);
-    target.scrollIntoView({ behavior: 'smooth' });
-  });
-});
+    // 클릭 이동
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
 
-// ⭐ 핵심: 공통 함수
-function updatePagination() {
-  let current = 'canvas01'; // 기본값 intro
+    // ⭐ 핵심: 공통 함수
+    function updatePagination() {
+      let current = 'canvas01'; // 기본값 intro
 
-  canvass.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
+      canvass.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
 
-    if (window.scrollY >= sectionTop - sectionHeight / 3) {
-      current = section.id;
+        if (window.scrollY >= sectionTop - sectionHeight / 3) {
+          current = section.id;
+        }
+      });
+
+      buttons.forEach(btn => {
+        btn.classList.remove('active', 'green', 'purple');
+
+        if (btn.dataset.target === current) {
+          btn.classList.add('active');
+          btn.classList.add(
+            purpleSections.includes(current) ? 'purple' : 'green'
+          );
+        }
+      });
     }
-  });
 
-  buttons.forEach(btn => {
-    btn.classList.remove('active', 'green', 'purple');
+    // 스크롤 시
+    window.addEventListener('scroll', updatePagination);
 
-    if (btn.dataset.target === current) {
-      btn.classList.add('active');
-      btn.classList.add(
-        purpleSections.includes(current) ? 'purple' : 'green'
-      );
-    }
-  });
-}
-
-// 스크롤 시
-window.addEventListener('scroll', updatePagination);
-
-// ⭐ 새로고침 직후
-window.addEventListener('load', updatePagination);
-</script>
+    // ⭐ 새로고침 직후
+    window.addEventListener('load', updatePagination);
+  </script>
 </body>
 
 </html>
