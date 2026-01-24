@@ -4,6 +4,34 @@ const logo = document.querySelector("#headerLogo");
 const blackLogo = "../images/headerlogo-black.png";
 const whiteLogo = "../images/headerlogo.png";
 
+ const landingModal = document.getElementById("landingModal");
+  const landingImage = document.getElementById("landingImage");
+  const closeLanding = document.getElementById("closeLanding");
+
+  document.querySelectorAll("[data-landing]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      landingImage.src = btn.dataset.landing;
+
+      landingModal.classList.add("active");
+      document.body.classList.add("modal-open"); // ⭐ 배경 고정
+    });
+  });
+
+  function closeModal() {
+    landingModal.classList.remove("active");
+    document.body.classList.remove("modal-open"); // ⭐ 복구
+  }
+
+  closeLanding.addEventListener("click", closeModal);
+
+  landingModal.addEventListener("click", (e) => {
+    if (e.target === landingModal) {
+      closeModal();
+    }
+  });
+
       window.addEventListener("scroll", function () {
         if ((window.scrollY >= 847) && (window.scrollY < 1800)) {
           header.classList.remove("on");
@@ -30,3 +58,5 @@ const whiteLogo = "../images/headerlogo.png";
       });
 
 });
+
+

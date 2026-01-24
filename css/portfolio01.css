@@ -1,5 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap');
+/* =========================
+   Asta Sans
+========================= */
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* =========================
+   Bebas Neue
+========================= */
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
@@ -7,10 +59,23 @@
   font-weight: 400;
 }
 
+a {
+  text-decoration: none;
+  outline: 0;
+  cursor: pointer;
+}
+ a:link { color: rgb(0, 0, 0); text-decoration: none;}
+ a:visited { color: rgb(0, 0, 0); text-decoration: none;}
+ a:hover { color: rgb(0, 0, 0); text-decoration: none;}
+
 body {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   overscroll-behavior: none;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none
 }
 
 /* CANVAS */
@@ -198,7 +263,7 @@ body {
 }
 
 .website {
-  background-image: url(../images/poster.jpg);
+  background-image: url(../images/landing/donghwa.png);
   background-position: center;
    background-repeat: no-repeat;
   background-size: cover;
@@ -222,7 +287,7 @@ body {
 }
 
 .ahastudy {
-  background-image: url(../images/branding.jpg);
+  background-image: url(../images/ahastudy.jpg);
   background-position: center;
    background-repeat: no-repeat;
   background-size: cover;
@@ -305,6 +370,13 @@ body {
   display: flex;
   justify-content: space-between;
   /* gap: 20px; */
+}
+
+button {
+  font-family: "Bebas Neue";
+  cursor: pointer;
+  border: 0;
+  outline: 0;
 }
 
 .btn {
@@ -497,6 +569,7 @@ body {
   border: none;
   font-size: 24px;
   cursor: pointer;
+  z-index: 4000;
 }
 
 /* 텍스트 */
@@ -525,4 +598,61 @@ body {
 
 .mail-btn:hover {
   background: #333;
+}
+
+
+/* 랜딩 모달 */
+.landing-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 3000;
+}
+
+.landing-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.landing-modal-inner {
+  position: relative;
+  max-width: 1000px;
+  width: 90%;
+  max-height: 90vh;
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  overflow-y: auto;
+
+}
+
+.landing-modal-inner img {
+  width: 100%;
+  display: block;
+}
+
+.landing-modal .close-btn {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+}
+
+body.modal-open {
+  overflow: hidden;
+
+  header {
+    z-index: 0;
+  }
 }

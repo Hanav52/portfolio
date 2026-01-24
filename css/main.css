@@ -1,5 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300..800&family=Bebas+Neue&display=swap');
+/* =========================
+   Asta Sans
+========================= */
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Asta Sans";
+  src: url("../fonts/AstaSans-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* =========================
+   Bebas Neue
+========================= */
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
 
 * {
   margin: 0px;
@@ -16,6 +68,7 @@ li {
 a {
   text-decoration: none;
   outline: 0;
+  cursor: pointer;
 }
  a:link { color: white; text-decoration: none;}
  a:visited { color: white; text-decoration: none;}
@@ -63,10 +116,6 @@ button {
   .nav {
     border: 3px solid #fff;
   }
-}
-
-a {
-  cursor: pointer;
 }
 
 .logo {
@@ -472,6 +521,7 @@ a {
 }
 
 .wrapbox-text {
+  font-family: "Bebas Neue";
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -525,7 +575,7 @@ a {
 .card-02 {
   background: #fff;
   color: #000;
-  border: none;
+  border: 3px solid #fff;
 
   clip-path: polygon(0 0,
       55% 0,
@@ -538,7 +588,7 @@ a {
 .circle-btn {
   position: absolute;
   top: 1040px;
-  right: 515px;
+  right: 516px;
   width: 96px;
   height: 96px;
   border: 3px solid #ffffff;
@@ -627,12 +677,15 @@ a {
   mix-blend-mode: difference
 
 }
+.card-name-img {
+  font-size: 25px;
+}
 
 .card img.swipeimage {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 130%;
   object-fit: cover;
   transform: translateX(-50%) translateY(-50%);
   z-index: 9;
