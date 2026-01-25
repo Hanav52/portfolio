@@ -800,3 +800,10 @@ button {
 .mail-btn:hover {
   background: #333;
 }
+
+.circlecircle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* ⭐ 원 안 꽉 차게 */
+  display: block;
+}
