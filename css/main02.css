@@ -105,6 +105,8 @@ body {
   border-radius: 50%;
   background: #e0e0e0;
   border: 3px solid;
+  background: url(../images/newprofile.png) no-repeat center;
+  background-size: cover;
 }
 
 /* 클릭 버튼 */
@@ -141,8 +143,12 @@ body {
 .preview-box {
   width: 100%;
   height: 615px;
-  background: #000;
+  /* background: #000; */
   border-radius: 30px;
+  background-image: url(../images/library.2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .contact {
