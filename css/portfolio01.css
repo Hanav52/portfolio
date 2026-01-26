@@ -623,7 +623,7 @@ button {
 .landing-modal-inner {
   position: relative;
   max-width: 1000px;
-  width: 90%;
+  /* width: 90%; */
   max-height: 90vh;
   background: #fff;
   padding: 20px;
