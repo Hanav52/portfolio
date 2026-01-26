@@ -105,8 +105,8 @@ body {
   border-radius: 50%;
   background: #e0e0e0;
   border: 3px solid;
-  background: url(../images/newprofile.png) no-repeat center;
-  background-size: cover;
+  background: url(../images/dlrjffh.png) no-repeat center;
+  background-size: contain;
 }
 
 /* 클릭 버튼 */
@@ -149,6 +149,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  filter: grayscale(1);
 }
 
 .contact {
